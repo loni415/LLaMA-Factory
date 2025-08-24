@@ -714,5 +714,11 @@
       "prompt": "content"
     },
     "folder": "python"
+  },
+  "augmentoolkit_pretrain": {
+    "file_name": "augmentoolkit_pretrain.jsonl",
+    "columns": {
+      "prompt": "text"
+    }
   }
 }

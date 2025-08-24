@@ -24,7 +24,7 @@ preprocessing_num_workers: 1
 preprocessing_batch_size: 500
 tokenized_path: /Users/lukasfiller/dev/LLaMA-Factory/.cache/mistral_v03_pt_tokens
 #template:
-overwrite_cache: true
+overwrite_cache: false
 
 ### output
 output_dir: ./saves/mistral7b_v03/pt_lora
@@ -35,7 +35,7 @@ overwrite_output_dir: true
 
 ### train
 per_device_train_batch_size: 1
-gradient_accumulation_steps: 12
+gradient_accumulation_steps: 8
 learning_rate: 1.0e-4
 weight_decay: 0.1
 lr_scheduler_type: cosine
