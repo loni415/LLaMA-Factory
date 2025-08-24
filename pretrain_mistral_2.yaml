@@ -1,0 +1,53 @@
+### model
+model_name_or_path: mistralai/Mistral-7B-v0.3
+use_fast_tokenizer: true
+low_cpu_mem_usage: true
+flash_attn: disabled           # MPS doesn't support FA kernels
+trust_remote_code: true
+
+### method
+stage: pt                      # pretraining / continued pretraining
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all               # simple + effective on Mistral blocks
+
+### data
+dataset: augmentoolkit_pretrain
+dataset_dir: ./data            # default; can be omitted, but explicit is fine
+packing: true                  # PT packs sequences by default; keep it on
+cutoff_len: 3072  #4096
+val_size: 0.0
+preprocessing_num_workers: 1
+preprocessing_batch_size: 500
+tokenized_path: /Users/lukasfiller/dev/LLaMA-Factory/.cache/mistral_v03_pt_tokens
+#template:
+overwrite_cache: true
+
+### output
+output_dir: ./saves/mistral7b_v03/pt_lora
+logging_steps: 10
+save_steps: 1000
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 12
+learning_rate: 1.0e-4
+weight_decay: 0.1
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+max_grad_norm: 1.0
+max_steps: 20000               # or set by your token budget
+seed: 42
+
+fp16: false                     # prefer fp16 on MPS
+bf16: false
+pure_bf16: false
+infer_dtype: float32
+gradient_checkpointing: true
+#disable_gradient_checkpointing: false
+use_reentrant_gc: true
