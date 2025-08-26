@@ -56,5 +56,7 @@ gradient_checkpointing: false
 use_reentrant_gc: false
 lora_target: [q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj]  # instead of "all"
 
+optim: adamw_torch
 
+resume_from_checkpoint: /Users/lukasfiller/dev/LLaMA-Factory/saves/mistral7b_v03/pt_lora/checkpoint-800
 
