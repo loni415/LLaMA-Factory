@@ -1,6 +1,8 @@
 ### model
 model_name_or_path: mistralai/Mistral-7B-v0.3
-trust_remote_code: false
+adapter_name_or_path: /Users/lukasfiller/dev/LLaMA-Factory/saves/mistral7b_v03/pt_lora/checkpoint-2000
+
+trust_remote_code: true
 use_fast_tokenizer: true
 
 ### method
@@ -9,7 +11,7 @@ finetuning_type: lora
 lora_rank: 16
 lora_alpha: 32
 lora_dropout: 0.05
-lora_target: all
+lora_target: [q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj]
 
 ### data
 dataset: my_sft_aug            # or: my_sft_sharegpt
@@ -33,7 +35,7 @@ overwrite_output_dir: true
 ### train
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 16
-learning_rate: 1.0e-4
+learning_rate: 5.0e-5
 lr_scheduler_type: cosine
 warmup_ratio: 0.03
 num_train_epochs: 2.0
@@ -41,8 +43,10 @@ max_grad_norm: 1.0
 
 # Apple M-series safe precision
 fp16: false
-bf16: false
-disable_gradient_checkpointing: false
+bf16: true
+pure_bf16: false
+infer_dtype: float16
+gradient_checkpointing: true
 
 ### eval (optional)
 val_size: 0.05
