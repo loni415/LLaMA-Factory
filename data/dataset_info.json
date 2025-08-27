@@ -722,7 +722,24 @@
     }
   },
   "my_sft_aug": {
-    "file_name": "sc_1/*.jsonl",
-    "format": "sharegpt"
+    "file_name": "sc_1/plain_qa_list-29.jsonl",
+    "format": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    }
+  },
+  "sc_1_qa_merged": {
+    "file_name": "sc_1_qa_merged.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    },
+    "tags": {
+      "role_tag": "from",
+      "content_tag": "value",
+      "user_tag": "human",
+      "assistant_tag": "gpt",
+      "system_tag": "system"
+    }
   }
 }

@@ -1,5 +1,6 @@
 ### model
-model_name_or_path: mistralai/Mistral-7B-v0.3
+
+model_name_or_path: /Users/lukasfiller/dev/LLaMA-Factory/saves/mistral7b_v03/base
 adapter_name_or_path: /Users/lukasfiller/dev/LLaMA-Factory/saves/mistral7b_v03/pt_lora/checkpoint-2000
 
 trust_remote_code: true
@@ -14,9 +15,10 @@ lora_dropout: 0.05
 lora_target: [q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj]
 
 ### data
-dataset: my_sft_aug            # or: my_sft_sharegpt
-dataset_dir: ./data
-template: mistral              # match the model family; keep same at inference
+dataset: sc_1_qa_merged        # Change from alpaca_en to your dataset
+dataset_dir: ./data            # Keep this the same
+template: mistral              # Keep this the same
+formatting: sharegpt           # Add this line to specify sharegpt format
 cutoff_len: 4096
 packing: true
 neat_packing: true             # SFT-only “contamination-free” packing
@@ -54,9 +56,4 @@ per_device_eval_batch_size: 1
 eval_strategy: steps
 eval_steps: 1000
 
-# optional: enable CPU fallback & lift MPS soft cap
-!export PYTORCH_ENABLE_MPS_FALLBACK=1
-!export PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0
-
-enter in cli to run
-#llamafactory-cli train /Users/lukasfiller/dev/LLaMA-Factory/sft_mistral_lora.yaml
+optim: adamw_torch
