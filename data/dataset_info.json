@@ -720,5 +720,9 @@
     "columns": {
       "prompt": "text"
     }
+  },
+  "my_sft_aug": {
+    "file_name": "sc_1/*.jsonl",
+    "format": "sharegpt"
   }
 }
