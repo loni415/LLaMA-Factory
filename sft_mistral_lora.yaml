@@ -18,7 +18,7 @@ lora_target: [q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj]
 dataset: sc_1_qa_merged        # Change from alpaca_en to your dataset
 dataset_dir: ./data            # Keep this the same
 template: mistral              # Keep this the same
-formatting: sharegpt           # Add this line to specify sharegpt format
+#formatting: sharegpt           # Add this line to specify sharegpt format
 cutoff_len: 4096
 packing: true
 neat_packing: true             # SFT-only “contamination-free” packing
@@ -42,8 +42,8 @@ lr_scheduler_type: cosine
 warmup_ratio: 0.03
 num_train_epochs: 2.0
 max_grad_norm: 1.0
+do_train: true
 
-# Apple M-series safe precision
 fp16: false
 bf16: true
 pure_bf16: false
